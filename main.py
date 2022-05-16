@@ -31,5 +31,4 @@ async def textonator(m: Message):
     await m.answer(msg)
 
 
-
 bot.run_forever()
