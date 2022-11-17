@@ -2,7 +2,7 @@ import markovify
 from config import text
 
 
-def gen():
+async def gen():
     text_model = markovify.Text(text)
     return text_model.make_sentence(tries=100)
 

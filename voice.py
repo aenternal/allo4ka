@@ -15,7 +15,7 @@ async def wavgen():
     model = torch.package.PackageImporter(local_file).load_pickle("tts_models", "model")
     model.to(device)
 
-    kext = gen()
+    kext = await gen()
     kext.lower()
     sample_rate = 48000
     speaker = 'baya'

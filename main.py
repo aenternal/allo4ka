@@ -15,20 +15,22 @@ async def hygiene(m: Message):
     if randint(1, 5) == 2:
         await textonator(m)
     elif randint(1, 5) == 3:
-        await voicenator(m)
+        main_loop.create_task(voicenator(m))
 
 
 async def voicenator(m: Message):
     await wavgen()
-    time.sleep(10)
+    await asyncio.sleep(10)
     voice_msg = VoiceMessageUploader(bot.api)
     voice = await voice_msg.upload(" ", "test.wav", peer_id=m.peer_id)
     await m.answer('', attachment=voice)
 
 
 async def textonator(m: Message):
-    msg = gen()
+    msg = await gen()
     await m.answer(msg)
 
+
+main_loop = asyncio.get_event_loop()
 
 bot.run_forever()
