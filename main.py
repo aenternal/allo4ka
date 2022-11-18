@@ -6,6 +6,7 @@ from vkbottle import VoiceMessageUploader
 from vkbottle.bot import Bot, Message
 from textgen import gen
 from voice import wavgen
+import os
 
 bot = Bot(token=token)
 
@@ -21,9 +22,13 @@ async def hygiene(m: Message):
 async def voicenator(m: Message):
     await wavgen()
     await asyncio.sleep(10)
-    voice_msg = VoiceMessageUploader(bot.api)
-    voice = await voice_msg.upload(" ", "test.wav", peer_id=m.peer_id)
-    await m.answer('', attachment=voice)
+    if os.path.isfile('test.wav'):
+        voice_msg = VoiceMessageUploader(bot.api)
+        voice = await voice_msg.upload(" ", "test.wav", peer_id=m.peer_id)
+        await m.answer('', attachment=voice)
+        os.remove('test.wav')
+    else:
+        pass
 
 
 async def textonator(m: Message):
