@@ -1,11 +1,12 @@
 import torch
 import os
-from textgen import gen
+import markovify
+import silero
 
 
-async def wavgen():
+def wavgen(text: str, speaker: str):
     device = torch.device('cpu')
-    torch.set_num_threads(4)
+    torch.set_num_threads(2)
     local_file = 'model.pt'
 
     if not os.path.isfile(local_file):
@@ -15,11 +16,13 @@ async def wavgen():
     model = torch.package.PackageImporter(local_file).load_pickle("tts_models", "model")
     model.to(device)
 
-    kext = await gen()
-    kext.lower()
-    sample_rate = 48000
-    speaker = 'baya'
+    text.lower()
+    sample_rate = 44100
 
-    audio_paths = model.save_wav(text=kext,
-                                 speaker=speaker,
-                                 sample_rate=sample_rate)
+    model.save_wav(text=text, speaker=speaker, sample_rate=sample_rate)
+    
+
+
+async def gen():
+    text_model = markovify.Text(text)
+    return text_model.make_sentence(tries=100)

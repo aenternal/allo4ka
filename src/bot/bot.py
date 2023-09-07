@@ -1,12 +1,13 @@
 import asyncio
 from random import randint
 import time
-from config import token
+from src.config import token
 from vkbottle import VoiceMessageUploader
 from vkbottle.bot import Bot, Message
 from textgen import gen
 from voice import wavgen
 import os
+
 
 bot = Bot(token=token)
 
