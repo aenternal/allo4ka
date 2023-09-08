@@ -1,42 +1,19 @@
-import asyncio
-from random import randint
-import time
-from src.config import token
-from vkbottle import VoiceMessageUploader
-from vkbottle.bot import Bot, Message
-from textgen import gen
-from voice import wavgen
-import os
+from src.config import Config
+from src.tasks.tasks import send_voice_message
+from vkbottle.bot import Message
+from overrides import MyBot
 
 
-bot = Bot(token=token)
+bot = MyBot(token=Config.BOT_TOKEN)
 
 
-@bot.on.message(text='<msg>')
+@bot.on.message()
 async def hygiene(m: Message):
-    if randint(1, 5) == 2:
-        await textonator(m)
-    elif randint(1, 5) == 3:
-        main_loop.create_task(voicenator(m))
+    send_voice_message.delay(message=m, bot=bot)
 
 
-async def voicenator(m: Message):
-    await wavgen()
-    await asyncio.sleep(10)
-    if os.path.isfile('test.wav'):
-        voice_msg = VoiceMessageUploader(bot.api)
-        voice = await voice_msg.upload(" ", "test.wav", peer_id=m.peer_id)
-        await m.answer('', attachment=voice)
-        os.remove('test.wav')
-    else:
-        pass
-
-
-async def textonator(m: Message):
-    msg = await gen()
-    await m.answer(msg)
-
-
-main_loop = asyncio.get_event_loop()
+# async def textonator(m: Message):
+#     msg = await gen()
+#     await m.answer(msg)
 
 bot.run_forever()
