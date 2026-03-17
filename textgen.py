@@ -1,9 +1,6 @@
-import markovify
-from config import text
+"""Legacy module kept for compatibility.
 
+Use app.services.response_builder instead.
+"""
 
-async def gen():
-    text_model = markovify.Text(text)
-    return text_model.make_sentence(tries=100)
-
-# print(text_model.make_sentence(tries=100))
+from app.services.response_builder import build_response  # noqa: F401
