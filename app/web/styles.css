@@ -1,0 +1,126 @@
+:root {
+  color-scheme: dark;
+  --bg: #10131a;
+  --panel: #171c25;
+  --panel-soft: #202734;
+  --text: #f2f5fb;
+  --muted: #97a3b6;
+  --accent: #6ea8fe;
+  --accent-strong: #3d7eff;
+  --danger: #ff7b7b;
+  --border: #2a3444;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: linear-gradient(180deg, #0d1117 0%, #121824 100%);
+  color: var(--text);
+}
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.auth-card, .panel {
+  background: rgba(23, 28, 37, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.auth-card {
+  width: min(460px, calc(100vw - 32px));
+  padding: 32px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 24px 32px 0;
+}
+
+.dashboard {
+  padding: 24px 32px 32px;
+  display: grid;
+  gap: 20px;
+}
+
+.grid-panels {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.panel {
+  padding: 20px;
+}
+
+.stack-form {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+input, textarea, button {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel-soft);
+  color: var(--text);
+  padding: 12px 14px;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
+  border: none;
+  font-weight: 700;
+}
+
+button.ghost-button {
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.checkbox-row {
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.list {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.list-item {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.error-message {
+  color: var(--danger);
+  min-height: 20px;
+}

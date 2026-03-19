@@ -30,6 +30,9 @@ services:
       CELERY_RESULT_BACKEND: redis://redis:6379/1
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
       VK_GROUP_TOKEN: ${VK_GROUP_TOKEN:-}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET:-change-me-in-env}
     depends_on:
       db:
         condition: service_healthy
@@ -45,6 +48,9 @@ services:
       CELERY_RESULT_BACKEND: redis://redis:6379/1
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
       VK_GROUP_TOKEN: ${VK_GROUP_TOKEN:-}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET:-change-me-in-env}
     depends_on:
       init-db:
         condition: service_completed_successfully
@@ -60,6 +66,9 @@ services:
       CELERY_RESULT_BACKEND: redis://redis:6379/1
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
       VK_GROUP_TOKEN: ${VK_GROUP_TOKEN:-}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET:-change-me-in-env}
     depends_on:
       init-db:
         condition: service_completed_successfully
@@ -75,6 +84,9 @@ services:
       CELERY_RESULT_BACKEND: redis://redis:6379/1
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
       VK_GROUP_TOKEN: ${VK_GROUP_TOKEN:-}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET:-change-me-in-env}
     depends_on:
       init-db:
         condition: service_completed_successfully

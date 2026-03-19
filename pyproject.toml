@@ -18,6 +18,8 @@ dependencies = [
   "celery>=5.4",
   "vkbottle>=4.4",
   "aiogram>=3.10",
+  "alembic>=1.13",
+  "itsdangerous>=2.2",
 ]
 
 [tool.setuptools]
