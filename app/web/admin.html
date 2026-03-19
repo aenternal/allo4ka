@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Allo4ka Admin</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Allo4ka Admin</h1>
+      <p>Управление триггерами, ответами, связями и прегенерацией voice-кэша.</p>
+    </div>
+    <button id="logout-button" class="ghost-button">Выйти</button>
+  </header>
+
+  <main class="dashboard">
+    <section class="panel">
+      <h2>Прегенерация voice</h2>
+      <form id="voice-pregeneration-form" class="stack-form">
+        <label>Сколько случайных фрагментных фраз озвучить<input type="number" name="fragment_count" min="0" value="10" required></label>
+        <button type="submit">Запустить прегенерацию voice</button>
+      </form>
+      <p id="pregeneration-result" class="muted"></p>
+    </section>
+
+    <section class="grid-panels">
+      <section class="panel">
+        <h2>Триггеры</h2>
+        <form id="trigger-form" class="stack-form compact-form">
+          <label>Платформа<input name="platform" type="text" value="all" required></label>
+          <label>Паттерн<input name="pattern" type="text" required></label>
+          <label class="checkbox-row"><input name="is_active" type="checkbox" checked> Активен</label>
+          <button type="submit">Добавить триггер</button>
+        </form>
+        <div id="triggers-list" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Ответы</h2>
+        <form id="response-form" class="stack-form compact-form">
+          <label>Текст ответа<textarea name="text" rows="4" required></textarea></label>
+          <label class="checkbox-row"><input name="voice_enabled" type="checkbox" checked> Разрешить voice</label>
+          <button type="submit">Добавить ответ</button>
+        </form>
+        <div id="responses-list" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Связи</h2>
+        <form id="link-form" class="stack-form compact-form">
+          <label>ID триггера<input name="trigger_id" type="number" min="1" required></label>
+          <label>ID ответа<input name="response_id" type="number" min="1" required></label>
+          <button type="submit">Связать</button>
+        </form>
+        <div id="links-list" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Фрагменты</h2>
+        <form id="fragment-form" class="stack-form compact-form">
+          <label>Часть 1<input name="part1" type="text" required></label>
+          <label>Часть 2<input name="part2" type="text" required></label>
+          <label>Часть 3<input name="part3" type="text" required></label>
+          <label>Часть 4<input name="part4" type="text" required></label>
+          <button type="submit">Добавить фрагмент</button>
+        </form>
+        <div id="fragments-list" class="list"></div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <h2>Кэш голосовых файлов</h2>
+      <div id="audio-cache-list" class="list"></div>
+    </section>
+  </main>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
